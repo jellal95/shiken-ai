@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ShikenAI - Platform latihan CPNS berbasis AI dengan drill engine adaptif dan AI Tutor">
+    <title>ShikenAI | Persiapan CPNS AI-Powered</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #60a5fa 0%, #818cf8 50%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-gradient {
+            background: radial-gradient(ellipse at top, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+                        radial-gradient(ellipse at bottom right, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.5) 0%, rgba(30, 41, 59, 0.3) 100%);
+            border: 1px solid rgba(51, 65, 85, 0.5);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .feature-card:hover {
+            border-color: rgba(96, 165, 250, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px -15px rgba(59, 130, 246, 0.15);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.4);
+        }
+
+        .pricing-card {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.6) 0%, rgba(30, 41, 59, 0.4) 100%);
+            border: 1px solid rgba(51, 65, 85, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            border-color: rgba(96, 165, 250, 0.3);
+        }
+
+        .pricing-card.featured {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(99, 102, 241, 0.2) 100%);
+            border: 2px solid rgba(96, 165, 250, 0.5);
+        }
+
+        .pricing-card.featured:hover {
+            border-color: rgba(96, 165, 250, 0.7);
+        }
+
+        .grid-bg {
+            background-image:
+                linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .animate-pulse-slow {
+            animation: pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .comparison-table {
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            border-bottom: 1px solid rgba(51, 65, 85, 0.5);
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid rgba(51, 65, 85, 0.5);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .faq-answer.open {
+            max-height: 200px;
+        }
+
+        .step-connector {
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, rgba(59, 130, 246, 0.5) 0%, transparent 100%);
+        }
+
+        @media (min-width: 768px) {
+            .step-connector {
+                display: block;
+            }
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 50;
+        }
+
+        .modal.open {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .modal-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-content {
+            position: relative;
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(30, 41, 59, 0.9) 100%);
+            border: 1px solid rgba(51, 65, 85, 0.5);
+            border-radius: 1rem;
+            padding: 2rem;
+            max-width: 500px;
+            width: 100%;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 antialiased">
+
+    <!-- HERO SECTION -->
+    <section class="hero-gradient min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <div class="absolute inset-0 grid-bg"></div>
+
+        <div class="relative z-10 text-center max-w-4xl mx-auto">
+            <!-- Beta Badge -->
+            <div class="mb-8 fade-in">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900/50 border border-slate-800">
+                    <span class="w-2 h-2 bg-blue-500 rounded-full animate-pulse-slow"></span>
+                    <span class="text-sm text-slate-400">Beta Testing Segera Dimulai</span>
+                </div>
+            </div>
+
+            <!-- Main Headline -->
+            <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 tracking-tight leading-tight fade-in">
+                Persiapan CPNS<br>
+                <span class="gradient-text">AI-Powered</span>
+            </h1>
+
+            <!-- Subheadline -->
+            <p class="text-xl sm:text-2xl text-slate-400 mb-12 max-w-2xl mx-auto leading-relaxed font-light fade-in">
+                Drill engine adaptif + AI Tutor untuk persiapan CPNS yang efektif dan efisien
+            </p>
+
+            <!-- CTA -->
+            <div class="fade-in">
+                <button onclick="openModal()"
+                   class="btn-primary inline-block px-8 py-4 rounded-lg font-semibold text-white cursor-pointer">
+                    Daftar Beta
+                </button>
+            </div>
+
+            <!-- Stats -->
+            <div class="mt-16 grid grid-cols-3 gap-8 max-w-lg mx-auto fade-in">
+                <div class="text-center">
+                    <div class="text-2xl sm:text-3xl font-bold text-white">500+</div>
+                    <div class="text-sm text-slate-500">Soal Latihan</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-2xl sm:text-3xl font-bold text-white">24/7</div>
+                    <div class="text-sm text-slate-500">AI Tutor</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-2xl sm:text-3xl font-bold text-white">20</div>
+                    <div class="text-sm text-slate-500">Beta Slots</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <a href="#fitur" class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce cursor-pointer">
+            <svg class="w-6 h-6 text-slate-600 hover:text-slate-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+            </svg>
+        </a>
+    </section>
+
+    <!-- FEATURES SECTION -->
+    <section id="fitur" class="py-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+                    <span class="gradient-text">Fitur Utama</span>
+                </h2>
+                <p class="text-slate-400 text-lg max-w-2xl mx-auto">
+                    Teknologi AI terkini untuk persiapan CPNS yang lebih efektif
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- AI Tutor -->
+                <div class="feature-card rounded-2xl p-8 fade-in">
+                    <div class="w-14 h-14 bg-blue-500/10 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-3">AI Tutor</h3>
+                    <p class="text-slate-400 leading-relaxed">
+                        Penjelasan personal untuk setiap soal yang salah. Dapatkan pemahaman mendalam dengan AI Tutor yang powered oleh Google NotebookLLM.
+                    </p>
+                </div>
+
+                <!-- Simulasi CAT -->
+                <div class="feature-card rounded-2xl p-8 fade-in">
+                    <div class="w-14 h-14 bg-indigo-500/10 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-3">Simulasi CAT</h3>
+                    <p class="text-slate-400 leading-relaxed">
+                        UI identik dengan BKN, timer real-time, dan navigasi soal persis ujian sebenarnya. Latihan seolah-olah di ujian nyata.
+                    </p>
+                </div>
+
+                <!-- Mastery Heatmap -->
+                <div class="feature-card rounded-2xl p-8 fade-in">
+                    <div class="w-14 h-14 bg-violet-500/10 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-3">Mastery Heatmap</h3>
+                    <p class="text-slate-400 leading-relaxed">
+                        Visualisasi kekuatan dan kelemahanmu dengan heatmap yang jelas. Fokus belajar pada area yang perlu ditingkatkan.
+                    </p>
+                </div>
+
+                <!-- Monthly Leaderboard -->
+                <div class="feature-card rounded-2xl p-8 fade-in">
+                    <div class="w-14 h-14 bg-purple-500/10 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-3">Monthly Leaderboard</h3>
+                    <p class="text-slate-400 leading-relaxed">
+                        Kompetisi bulanan dengan ranking nasional. Bersaing dengan peserta lain dan lihat peringkatmu setiap bulan.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING SECTION -->
+    <section id="harga" class="py-24 px-4 sm:px-6 lg:px-8 bg-slate-900/30">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+                    <span class="gradient-text">Pricing</span>
+                </h2>
+                <p class="text-slate-400 text-lg">
+                    Mulai gratis, upgrade kapan saja
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Free Tier -->
+                <div class="pricing-card rounded-2xl p-8 fade-in">
+                    <h3 class="text-xl font-bold text-white mb-2">Free</h3>
+                    <div class="mb-8">
+                        <span class="text-4xl font-bold text-white">Rp0</span>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-slate-300">3x tryout CAT</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-slate-300">Basic analytics</span>
+                        </li>
+                    </ul>
+                    <button onclick="openModal()"
+                       class="block w-full py-3 px-6 text-center border border-slate-700 text-slate-300 rounded-lg hover:bg-slate-800 transition-all cursor-pointer">
+                        Daftar Beta
+                    </button>
+                </div>
+
+                <!-- Pro Tier -->
+                <div class="pricing-card featured rounded-2xl p-8 relative fade-in">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2">
+                        <span class="px-4 py-1 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-sm font-semibold rounded-full">
+                            Popular
+                        </span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Pro</h3>
+                    <div class="mb-8">
+                        <span class="text-4xl font-bold text-white">Rp79.000</span>
+                        <span class="text-slate-400">/bulan</span>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-white">Unlimited tryout CAT</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-white">AI Tutor personal</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-white">Drill Mode adaptif</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-white">Mastery Heatmap</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-white">Monthly Leaderboard</span>
+                        </li>
+                    </ul>
+                    <button onclick="openModal()"
+                       class="btn-primary block w-full py-3 px-6 text-center text-white font-semibold rounded-lg cursor-pointer">
+                        Daftar Beta Pro
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS SECTION -->
+    <section class="py-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+                    <span class="gradient-text">Cara Kerja</span>
+                </h2>
+                <p class="text-slate-400 text-lg max-w-2xl mx-auto">
+                    Tiga langkah mudah mulai persiapan CPNS dengan AI
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Step 1 -->
+                <div class="text-center fade-in">
+                    <div class="relative inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 mb-6">
+                        <span class="text-3xl font-bold text-white">1</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-3">Daftar Beta</h3>
+                    <p class="text-slate-400">
+                        Daftar sebagai early adopter dan dapat akses ke platform beta
+                    </p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="text-center fade-in">
+                    <div class="relative inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-indigo-500 to-violet-600 mb-6">
+                        <span class="text-3xl font-bold text-white">2</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-3">Diagnostic Test</h3>
+                    <p class="text-slate-400">
+                        Kerjakan diagnostic test untuk mengukur kemampuan dasarmu
+                    </p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="text-center fade-in">
+                    <div class="relative inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-violet-500 to-purple-600 mb-6">
+                        <span class="text-3xl font-bold text-white">3</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-3">AI Learning Path</h3>
+                    <p class="text-slate-400">
+                        Dapatkan rencana belajar personal dari AI Tutor dan mulai latihan
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPARISON SECTION -->
+    <section class="py-24 px-4 sm:px-6 lg:px-8 bg-slate-900/30">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+                    <span class="gradient-text">Bandingkan dengan Kompetitor</span>
+                </h2>
+                <p class="text-slate-400 text-lg">
+                    Lihat keunggulan ShikenAI dibanding platform lain
+                </p>
+            </div>
+
+            <div class="overflow-x-auto fade-in">
+                <table class="comparison-table w-full text-left">
+                    <thead>
+                        <tr class="border-b border-slate-700">
+                            <th class="py-4 px-6 text-slate-400 font-medium">Fitur</th>
+                            <th class="py-4 px-6 text-center text-white font-bold">ShikenAI</th>
+                            <th class="py-4 px-6 text-center text-slate-400">SMARTCASN</th>
+                            <th class="py-4 px-6 text-center text-slate-400">JadiASN</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="hover:bg-slate-800/30 transition-colors">
+                            <td class="py-4 px-6 text-slate-300">AI Tutor Personal</td>
+                            <td class="py-4 px-6 text-center">
+                                <svg class="w-6 h-6 text-blue-400 mx-auto" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                </svg>
+                            </td>
+                            <td class="py-4 px-6 text-center text-slate-500">—</td>
+                            <td class="py-4 px-6 text-center text-slate-500">—</td>
+                        </tr>
+                        <tr class="hover:bg-slate-800/30 transition-colors">
+                            <td class="py-4 px-6 text-slate-300">Drill Mode Adaptif</td>
+                            <td class="py-4 px-6 text-center">
+                                <svg class="w-6 h-6 text-blue-400 mx-auto" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                </svg>
+                            </td>
+                            <td class="py-4 px-6 text-center text-slate-500">—</td>
+                            <td class="py-4 px-6 text-center text-slate-500">Limited</td>
+                        </tr>
+                        <tr class="hover:bg-slate-800/30 transition-colors">
+                            <td class="py-4 px-6 text-slate-300">Mastery Heatmap</td>
+                            <td class="py-4 px-6 text-center">
+                                <svg class="w-6 h-6 text-blue-400 mx-auto" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                </svg>
+                            </td>
+                            <td class="py-4 px-6 text-center text-slate-500">—</td>
+                            <td class="py-4 px-6 text-center text-slate-500">—</td>
+                        </tr>
+                        <tr class="hover:bg-slate-800/30 transition-colors">
+                            <td class="py-4 px-6 text-slate-300">Harga</td>
+                            <td class="py-4 px-6 text-center">
+                                <span class="text-blue-400 font-semibold">Rp79K/bln</span>
+                            </td>
+                            <td class="py-4 px-6 text-center text-slate-400">Rp150K+</td>
+                            <td class="py-4 px-6 text-center text-slate-400">Rp200K+</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section class="py-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+                    <span class="gradient-text">FAQ</span>
+                </h2>
+                <p class="text-slate-400 text-lg">
+                    Pertanyaan yang sering ditanyakan
+                </p>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item py-6 fade-in">
+                    <button class="faq-toggle w-full flex justify-between items-center text-left" onclick="toggleFaq(this)">
+                        <span class="text-lg font-semibold text-white">Gimana cara kerja AI Tutor?</span>
+                        <svg class="w-5 h-5 text-slate-400 transform transition-transform faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer mt-4">
+                        <p class="text-slate-400 leading-relaxed">
+                            AI Tutor menggunakan Google NotebookLLM untuk memberikan penjelasan personal pada setiap soal yang salah. Kamu bisa tanya-tanya tentang konsep yang belum dimengerti, dan AI akan jelaskan dengan contoh yang relevan.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="faq-item py-6 fade-in">
+                    <button class="faq-toggle w-full flex justify-between items-center text-left" onclick="toggleFaq(this)">
+                        <span class="text-lg font-semibold text-white">Kapan beta dibuka?</span>
+                        <svg class="w-5 h-5 text-slate-400 transform transition-transform faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer mt-4">
+                        <p class="text-slate-400 leading-relaxed">
+                            Beta akan dibuka setelah 20 pendaftar pertama terkumpul. Kami akan mengirim email konfirmasi dan akses platform kepada semua beta users. Estimasi: 2-4 minggu dari sekarang.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="faq-item py-6 fade-in">
+                    <button class="faq-toggle w-full flex justify-between items-center text-left" onclick="toggleFaq(this)">
+                        <span class="text-lg font-semibold text-white">Apa bedanya dengan kompetitor?</span>
+                        <svg class="w-5 h-5 text-slate-400 transform transition-transform faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer mt-4">
+                        <p class="text-slate-400 leading-relaxed">
+                            ShikenAI fokus pada personalisasi AI-driven. Sementara kompetitor memberikan soal dan pembahasan generik, kami menyediakan AI Tutor yang bisa menjawab pertanyaan spesifik kamu dan Drill Mode yang adaptif sesuai kelemahanmu.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="faq-item py-6 fade-in">
+                    <button class="faq-toggle w-full flex justify-between items-center text-left" onclick="toggleFaq(this)">
+                        <span class="text-lg font-semibold text-white">Apakah soal sesuai standar BKN?</span>
+                        <svg class="w-5 h-5 text-slate-400 transform transition-transform faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer mt-4">
+                        <p class="text-slate-400 leading-relaxed">
+                            Ya. Semua soal kami review oleh SME (Subject Matter Expert) dan disesuaikan dengan standar BKN. UI simulasi CAT juga kami desain identik dengan ujian sebenarnya.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <div class="absolute inset-0">
+            <div class="absolute inset-0 bg-gradient-to-r from-blue-900/20 to-indigo-900/20"></div>
+        </div>
+
+        <div class="max-w-4xl mx-auto text-center relative z-10 fade-in">
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
+                <span class="gradient-text">Daftar Beta Early Access</span>
+            </h2>
+            <p class="text-slate-400 text-lg mb-10 max-w-2xl mx-auto">
+                Jadi yang pertama rasakan persiapan CPNS dengan AI-powered learning. Khusus 20 beta users pertama.
+            </p>
+            <button onclick="openModal()"
+               class="btn-primary inline-block px-10 py-5 rounded-lg font-semibold text-white text-lg cursor-pointer">
+                Daftar Beta Sekarang
+            </button>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-12 px-4 sm:px-6 lg:px-8 border-t border-slate-800/50">
+        <div class="max-w-6xl mx-auto text-center">
+            <div class="text-slate-500 text-sm">
+                © 2026 ShikenAI. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- REGISTRATION MODAL -->
+    <div id="modal" class="modal">
+        <div class="modal-backdrop" onclick="closeModal()"></div>
+        <div class="modal-content w-full fade-in visible">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-white">Daftar Beta ShikenAI</h2>
+                    <button onclick="closeModal()" class="text-slate-400 hover:text-white transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <form action="https://formsubmit.co/bang.acnologia@gmail.com" method="POST">
+                    <input type="hidden" name="_subject" value="Pendaftaran Beta ShikenAI">
+                    <input type="hidden" name="_captcha" value="false">
+
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-300 mb-2">Nama Lengkap</label>
+                            <input type="text" name="nama" required
+                                   class="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
+                                   placeholder="Masukkan nama lengkap">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-slate-300 mb-2">Email</label>
+                            <input type="email" name="email" required
+                                   class="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
+                                   placeholder="nama@email.com">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-slate-300 mb-2">Paket Beta</label>
+                            <select name="paket" required
+                                    class="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all">
+                                <option value="free">Free (Rp0)</option>
+                                <option value="pro">Pro (Rp79.000/bulan)</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-slate-300 mb-2">Pesan (Opsional)</label>
+                            <textarea name="pesan" rows="3"
+                                      class="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all resize-none"
+                                      placeholder="Ada pertanyaan atau request khusus?"></textarea>
+                        </div>
+                    </div>
+
+                    <button type="submit"
+                            class="w-full mt-6 btn-primary py-4 rounded-lg font-semibold text-white cursor-pointer">
+                        Kirim Pendaftaran
+                    </button>
+
+                    <p class="mt-4 text-xs text-slate-500 text-center">
+                        Data kamu aman. Kami akan menghubungi dalam 3-7 hari kerja.
+                    </p>
+                </form>
+            </div>
+    </div>
+
+    <script>
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // FAQ Toggle
+        function toggleFaq(button) {
+            const answer = button.nextElementSibling;
+            const icon = button.querySelector('.faq-icon');
+
+            answer.classList.toggle('open');
+            icon.style.transform = answer.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0)';
+        }
+
+        // Modal Functions
+        function openModal() {
+            document.getElementById('modal').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('open');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal on ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
