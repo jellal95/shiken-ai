@@ -100,9 +100,7 @@
 | Paket | Harga | Fitur |
 | :--- | :--- | :--- |
 | **Free** | Rp0 | 3x tryout, basic analytics. |
-| **Pro** | Rp59.000/bln | Unlimited tryout, AI Tutor, Drill Mode, Heatmap. |
-| **Pro Season** | Rp149.000/3 bln | Pro + Priority AI Tutor. |
-| **Premium** | Rp199.000/1 thn | Pro + Video Pembahasan + Bank Soal Premium. |
+| **Pro** | Rp79.000/bulan | Unlimited tryout, AI Tutor, Drill Mode, Heatmap, Leaderboard. |
 
 ### 9.2 Phased Rollout
 - **Phase 1 (Beta)**: CAT Sim + AI Tutor dasar + Leaderboard.
