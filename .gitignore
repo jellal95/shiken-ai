@@ -1,0 +1,20 @@
+# Ignore PRD (internal documentation)
+plan/PRD.md
+
+# Keep AGENTS.md for Claude auto-import
+!plan/AGENTS.md
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.log
